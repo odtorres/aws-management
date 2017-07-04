@@ -12,7 +12,7 @@ let recursive = function (listBuckets, pos) {
                 })
             })
         } else {
-            console.log(e.Name)
+            console.log(listBuckets[pos].Name)
         }
 }
 
