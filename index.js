@@ -13,6 +13,7 @@ let recursive = function (listBuckets, pos) {
             })
         } else {
             console.log(listBuckets[pos].Name)
+            recursive(listBuckets, pos + 1)
         }
 }
 
