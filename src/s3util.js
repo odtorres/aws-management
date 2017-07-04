@@ -1,11 +1,12 @@
 module.exports = {
-    deleteObject: function (client, deleteParams) {
+    deleteObject: function (client, deleteParams, done) {
         client.deleteObject(deleteParams, function (err, data) {
             if (err) {
                 console.log("delete err " + deleteParams.Key);
             } else {
                 console.log("deleted " + deleteParams.Key);
             }
+            done && done()
         });
     },
     listBuckets: function (client, done) {
@@ -23,16 +24,17 @@ module.exports = {
         });
 
     },
-    deleteBucket: function (client, bucket) {
+    deleteBucket: function (client, bucket,done) {
         client.deleteBucket({ Bucket: bucket }, function (err, data) {
             if (err) {
                 console.log("error deleting bucket " + err);
             } else {
                 console.log("delete the bucket " + data);
             }
+            done && done()
         });
     },
-    clearBucket: function (client, bucket) {
+    clearBucket: function (client, bucket, done) {
         var self = this;
         client.listObjects({ Bucket: bucket }, function (err, data) {
             if (err) {
@@ -44,6 +46,9 @@ module.exports = {
                 var deleteParams = { Bucket: bucket, Key: items[i].Key };
                 self.deleteObject(client, deleteParams);
             }
+            setTimeout(() => {
+                done && done()
+            }, 10000)
         });
     }
 
