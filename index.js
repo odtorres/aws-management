@@ -6,6 +6,7 @@ let recursive = function (listBuckets, pos) {
     if (listBuckets.length > pos)
         if (listBuckets[pos].Name != "www.acworthga-ilovekickboxing.com" &&
             listBuckets[pos].Name != "www.acworthkickboxingclasses.com") {
+            console.log("Removing bucket " + listBuckets[pos].Name)
             s3Util.clearBucket(s3, listBuckets[pos].Name, () => {
                 s3Util.deleteBucket(s3, listBuckets[pos].Name, () => {
                     recursive(listBuckets, pos + 1)
