@@ -11,8 +11,8 @@ module.exports = {
     },
     listBuckets: function (client, done) {
         client.listBuckets({}, function (err, data) {
-            var buckets = data.Buckets;
-            var owners = data.Owner;
+            var buckets = (data)?data.Buckets:[];
+            //var owners = data.Owner;
             done && done(buckets)
             /*for (var i = 0; i < buckets.length; i += 1) {
                 var bucket = buckets[i];
