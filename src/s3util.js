@@ -48,7 +48,7 @@ module.exports = {
             }
             setTimeout(() => {
                 done && done()
-            }, 10000)
+            }, 5000)
         });
     }
 
