@@ -39,6 +39,7 @@ module.exports = {
         client.listObjects({ Bucket: bucket }, function (err, data) {
             if (err) {
                 console.log("error listing bucket objects " + err);
+                done && done()
                 return;
             }
             var items = data.Contents;
@@ -48,7 +49,7 @@ module.exports = {
             }
             setTimeout(() => {
                 done && done()
-            }, 2500)
+            }, 5000)
         });
     }
 
